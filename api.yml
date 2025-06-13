@@ -1,0 +1,547 @@
+# This is the OpenAPI specification for the service. It is used to generate the client code.
+# Reference: https://swagger.io/specification/
+
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: TTMI Challenge
+  license:
+    name: MIT
+servers:
+  - url: http://localhost
+paths:
+  /health:
+    get:
+      summary: Health check endpoint
+      operationId: GetHealth
+      responses:
+        '200':
+          description: OK
+  /user/register:
+    post: 
+      summary: This endpoint registers new user
+      operationId: RegisterUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterUserRequest"
+      responses:
+        '201':
+          description: User is created
+          content:
+            application/json:    
+              schema:
+                $ref: "#/components/schemas/RegisterUserResponse"
+  /user/login:
+    post: 
+      summary: This endpoint logs in the user
+      operationId: Login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:    
+              schema:
+                $ref: "#/components/schemas/LoginResponse"
+  /api/v1/warehouses:
+    post: 
+      summary: This endpoint creates a warehouse
+      operationId: CreateWarehouse
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateWarehouseRequest"
+      responses:
+        '201':
+          description: Warehouse is created
+          content:
+            application/json:    
+              schema:
+                $ref: "#/components/schemas/CreateWarehouseResponse"
+    get: 
+      summary: This endpoint gets warehouse list.
+      operationId: GetWarehouses
+      parameters:
+        - name: page
+          in: query
+          required: true
+          schema:
+            type: integer
+        - name: pageSize
+          in: query
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Return warehouse list
+          content:
+            application/json:    
+              schema:
+                $ref: "#/components/schemas/GetWarehousesResponse"
+  /api/v1/warehouses/{warehouseId}/status:
+    put:
+      summary: This endpoint updates warehouse status
+      operationId: UpdateWarehouseStatus
+      parameters:
+        - name: warehouseId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateWarehouseStatusRequest"
+      responses:
+        '200':
+          description: Warehouse's status is updated
+  /api/v1/shops:
+    post: 
+      summary: This endpoint creates a shop.
+      operationId: CreateShop
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateShopRequest"
+      responses:
+        '201':
+          description: Shop is created
+          content:
+            application/json:    
+              schema:
+                $ref: "#/components/schemas/CreateShopResponse"
+    get: 
+      summary: This endpoint gets shop list
+      operationId: GetShops
+      parameters:
+        - name: page
+          in: query
+          required: true
+          schema:
+            type: integer
+        - name: pageSize
+          in: query
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Return shop list
+          content:
+            application/json:    
+              schema:
+                $ref: "#/components/schemas/GetShopsResponse"
+  /api/v1/upsert-shop-warehouses:
+    post: 
+      summary: This endpoint sets or unsets shop to warehouses.
+      operationId: UpsertShopToWarehouses
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpsertShopToWarehousesRequest"
+      responses:
+        '200':
+          description: Shop set to warehouses
+  /api/v1/products:
+    post: 
+      summary: This endpoint creates product
+      operationId: CreateProduct
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateProductRequest"
+      responses:
+        '201':
+          description: Product is created
+          content:
+            application/json:    
+              schema:
+                $ref: "#/components/schemas/CreateProductResponse"
+  /api/v1/product/{productId}/stock:
+    put:
+      summary: This endpoint updates product total stock for a warehouse
+      operationId: UpdateProductStock
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateProductStockRequest"
+      responses:
+        '200':
+          description: Product stock is updated
+  /api/v1/product/transfer:
+    post:
+      summary: This endpoint transfers product from a warehouse to another.
+      operationId: TransferProduct
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TransferProductRequest"
+      responses:
+        '200':
+          description: Product stock in source and destination warehouse are updated
+  /api/v1/shops/{shopId}/products:
+    get: 
+      summary: Get products from a shop.
+      operationId: GetProductsByShopId
+      parameters:
+        - name: shopId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          required: true
+          schema:
+            type: integer
+        - name: pageSize
+          in: query
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Return product list by the shop id
+          content:
+            application/json:    
+              schema:
+                $ref: "#/components/schemas/GetProductsByShopIdResponse"
+  /api/v1/shop/{shopId}/order:
+    post: 
+      summary: Order products from a shop.
+      operationId: OrderProducts
+      parameters:
+        - name: shopId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OrderProductsRequest"
+      responses:
+        '200':
+          description: Return status
+          content:
+            application/json:    
+              schema:
+                $ref: "#/components/schemas/OrderProductsResponse"
+  /api/v1/order/{orderId}/pay:
+    post: 
+      summary: Pay an order.
+      operationId: PayOrder
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PayOrderRequest"
+      responses:
+        '200':
+          description: Return status
+components:
+  schemas:
+    RegisterUserRequest:
+      type: object
+      required:
+        - identifierType
+        - identifier
+      properties:
+        identifierType:
+          type: string
+        identifier:
+          type: string
+    RegisterUserResponse:
+      type: object
+      required:
+        - token
+      properties:
+        token:
+          type: string
+    LoginRequest:
+      type: object
+      required:
+        - identifierType
+        - identifier
+      properties:
+        identifierType:
+          type: string
+        identifier:
+          type: string
+    LoginResponse:
+      type: object
+      required:
+        - token
+      properties:
+        token:
+          type: string
+    CreateWarehouseRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+    CreateWarehouseResponse:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: string
+    UpdateWarehouseStatusRequest:
+      type: object
+      required:
+        - enabled
+      properties:
+        enabled:
+          type: boolean
+    Warehouse:
+      type: object
+      required:
+        - id
+        - name
+        - enabled
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        enabled:
+          type: boolean
+    Pagination:
+      type: object
+      required:
+        - page
+        - pageSize
+        - totalPage
+        - total
+      properties:
+        page:
+          type: integer
+        pageSize:
+          type: integer
+        totalPage:
+          type: integer
+        total:
+          type: integer
+    GetWarehousesResponse:
+      type: object
+      required:
+        - warehouses
+        - pagination
+      properties:
+        warehouses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Warehouse'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    CreateShopRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+    CreateShopResponse:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: string
+    Shop:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+    GetShopsResponse:
+      type: object
+      required:
+        - shops
+        - pagination
+      properties:
+        shops:
+          type: array
+          items:
+            $ref: '#/components/schemas/Shop'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    UpsertShopToWarehousesRequest:
+      type: object
+      required:
+        - shopId
+        - warehouseIds
+        - enabled
+      properties:
+        shopId:
+          type: string
+        warehouseIds:
+          type: array
+          items:
+            type: string
+        enabled:
+          type: boolean
+    CreateProductRequest:
+      type: object
+      required:
+        - name
+        - totalStock
+        - enabled
+        - warehouseId
+        - price
+      properties:
+        name:
+          type: string
+        totalStock:
+          type: integer
+        enabled:
+          type: boolean
+        warehouseId:
+          type: string
+        price:
+          type: integer
+    CreateProductResponse:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: string
+    OrderProductsResponse:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: string
+    Product:
+      type: object
+      required:
+        - id
+        - name
+        - price
+        - totalStock
+        - enabled
+        - warehouseId
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        price:
+          type: integer
+        totalStock:
+          type: integer
+        enabled:
+          type: boolean
+        warehouseId:
+          type: string
+    UpdateProductStockRequest:
+      type: object
+      required:
+        - warehouseId
+        - totalStock
+      properties:
+        warehouseId:
+          type: string
+        totalStock:
+          type: integer
+    TransferProductRequest:
+      type: object
+      required:
+        - productId
+        - sourceWarehouseId
+        - destinationWarehouseId
+        - totalStock
+      properties:
+        productId:
+          type: string
+        sourceWarehouseId:
+          type: string
+        destinationWarehouseId:
+          type: string
+        totalStock:
+          type: integer
+    GetProductsByShopIdResponse:
+      type: object
+      required:
+        - products
+        - pagination
+      properties:
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    OrderProductItem:
+      type: object
+      required:
+        - productId
+        - quantity
+      properties:
+        productId:
+          type: string
+        quantity:
+          type: integer
+    OrderProductsRequest:
+      type: object
+      required:
+        - items
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderProductItem'
+    PayOrderRequest:
+      type: object
+      required:
+        - amount
+      properties:
+        amount:
+          type: integer
