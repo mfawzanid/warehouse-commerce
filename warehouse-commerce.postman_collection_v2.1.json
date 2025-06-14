@@ -1,0 +1,563 @@
+{
+	"info": {
+		"_postman_id": "a6e87137-32c2-497b-97f6-c880b3c0e17f",
+		"name": "warehouse-commerce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40561535"
+	},
+	"item": [
+		{
+			"name": "GetHealth",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/health",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RegisterUser",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"identifierType\": \"email\",\n    \"identifier\": \"email_100@mail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/user/register",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"identifierType\": \"email\",\n    \"identifier\": \"email_100@mail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/user/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateWarehouse",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDk4MDU1ODAsInVzZXJJZCI6IjlhYjNhZmEzLTU2ZWItNDg0ZC04MDkxLTM0ZGUwOWI5MThjMCJ9.4SAdLLXY6SyWRnn-JiYuS_tswrnwZSDC0uP906bxGF0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"warehouse_test\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/v1/warehouses",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"warehouses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateWarehouseStatus",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDk4MTU4NDcsInVzZXJJZCI6IjlhYjNhZmEzLTU2ZWItNDg0ZC04MDkxLTM0ZGUwOWI5MThjMCJ9.nATYL8BiR7CF_ijD4sX8zdgenOCMYkx0EWgA9bqDOZM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"enabled\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/v1/warehouses/fe9f6077-e3eb-4280-adfc-0c27725f023e/status",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"warehouses",
+						"fe9f6077-e3eb-4280-adfc-0c27725f023e",
+						"status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetWarehouses",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDk2NTQzODEsInVzZXJJZCI6IjZmNjAxNDVlLTUwOWItNGMwZS1hYTJiLWE1M2VlMTI3MDNlNiJ9.L0hK4MaVxMuEbCADlKdRDIXPnjx02vsLTqk1N_mqYrY",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/api/v1/warehouses?page=1&pageSize=10",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"warehouses"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "pageSize",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateShops",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDk4MjUyMjcsInVzZXJJZCI6ImJmMjZlOGI5LWNlZjQtNGQ5Yi1iZjYzLTIwNTdlZjRmNzgxZSJ9.C_nx1hwVwBtbqJDs-uCeUwBfaKovdNLNpbmbuqFNNoo",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"shop_test\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/v1/shops",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"shops"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetShops",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDk4MDU1ODAsInVzZXJJZCI6IjlhYjNhZmEzLTU2ZWItNDg0ZC04MDkxLTM0ZGUwOWI5MThjMCJ9.4SAdLLXY6SyWRnn-JiYuS_tswrnwZSDC0uP906bxGF0",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/api/v1/shops?page=1&pageSize=10",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"shops"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "pageSize",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpsertShopToWarehouses",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDk4MjcwOTAsInVzZXJJZCI6ImJmMjZlOGI5LWNlZjQtNGQ5Yi1iZjYzLTIwNTdlZjRmNzgxZSJ9.mXq6GDCje5Lv2WQmKxTrqvj5LZn2jOgfC-MkjsuER1s",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"shopId\": \"e61eb9a1-dbbc-407e-9f74-53df1deb315f\",\n    \"warehousesIds\": [\n        \"c5b67453-3a31-4345-84c1-d6cb332f6e81\"\n    ],\n    \"enabled\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/v1/upsert-shop-warehouses",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"upsert-shop-warehouses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateProduct",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDk4MzI5NzAsInVzZXJJZCI6ImFjZGRiZWY5LTU3N2UtNGEwYy04MDBhLWQ5YzU1NDc0YTBjOCJ9._ScZJSKzlItXlJfJJ_tO7txmTEizqZV6Qo0x3jDeoY4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"product_test\",\n    \"warehouseId\": \"b474ee02-fc75-4390-8ab3-3057199fdb9b\",\n    \"enabled\": true,\n    \"totalStock\": 10,\n    \"price\": 2000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/v1/products",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateProductStock",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDk2NTQzODEsInVzZXJJZCI6IjZmNjAxNDVlLTUwOWItNGMwZS1hYTJiLWE1M2VlMTI3MDNlNiJ9.L0hK4MaVxMuEbCADlKdRDIXPnjx02vsLTqk1N_mqYrY",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"totalStock\": 20,\n    \"warehouseId\": \"39185452-8db2-495f-bff0-1489c6c2d2ae\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/v1/product/ba09e124-57fd-4e84-b3d6-ff20e7548929/stock",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"product",
+						"ba09e124-57fd-4e84-b3d6-ff20e7548929",
+						"stock"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TransferProduct",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDk2NTQzODEsInVzZXJJZCI6IjZmNjAxNDVlLTUwOWItNGMwZS1hYTJiLWE1M2VlMTI3MDNlNiJ9.L0hK4MaVxMuEbCADlKdRDIXPnjx02vsLTqk1N_mqYrY",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"productId\": \"ba09e124-57fd-4e84-b3d6-ff20e7548929\",\n    \"destinationWarehouseId\": \"39185452-8db2-495f-bff0-1489c6c2d2ae\",\n    \"sourceWarehouseId\": \"fe9f6077-e3eb-4280-adfc-0c27725f023e\",\n    \"totalStock\": 10\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/v1/product/transfer",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"product",
+						"transfer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetProductsByShopId",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDk4NjI2MDgsInVzZXJJZCI6IjhiMTQ0ZjA4LTUyZGUtNDc4Mi1iYmE3LTZlYmNlMzg5NWY0MSJ9.u7-JkPPplJsgB2jDR7-4gdmKPewcPeK8KrKxrbPhp8k",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/api/v1/shops/edf30be4-b16d-400c-bb4d-7633fe30877d/products?page=1&pageSize=10",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"shops",
+						"edf30be4-b16d-400c-bb4d-7633fe30877d",
+						"products"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "pageSize",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OrderProducts",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDk3MzcyNDMsInVzZXJJZCI6IjlhYjNhZmEzLTU2ZWItNDg0ZC04MDkxLTM0ZGUwOWI5MThjMCJ9.hImZrd8Vwx0wjfMQinPt5964elcqLZLN2cSftZptNvg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"items\": [\n        {\n            \"productId\": \"ba09e124-57fd-4e84-b3d6-ff20e7548929\",\n            \"quantity\": 2\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/v1/shop/6468a1f7-6eaa-42e5-ac2e-c3435e07d4a2/order",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"shop",
+						"6468a1f7-6eaa-42e5-ac2e-c3435e07d4a2",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PayOrder",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDk3MzcyNDMsInVzZXJJZCI6IjlhYjNhZmEzLTU2ZWItNDg0ZC04MDkxLTM0ZGUwOWI5MThjMCJ9.hImZrd8Vwx0wjfMQinPt5964elcqLZLN2cSftZptNvg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"amount\": 4000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/v1/order/85280abb-855e-4739-a895-b7291c348f00/pay",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"order",
+						"85280abb-855e-4739-a895-b7291c348f00",
+						"pay"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
